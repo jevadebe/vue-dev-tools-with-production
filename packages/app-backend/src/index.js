@@ -215,7 +215,7 @@ function scan () {
       while (baseVue.super) {
         baseVue = baseVue.super
       }
-      if (baseVue.config && baseVue.config.devtools) {
+      if (baseVue.config) {
         // give a unique id to root instance so we can
         // 'namespace' its children
         if (typeof instance.__VUE_DEVTOOLS_ROOT_UID__ === 'undefined') {

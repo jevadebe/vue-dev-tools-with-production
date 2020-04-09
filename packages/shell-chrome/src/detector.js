@@ -20,7 +20,7 @@ function detect (win) {
       }
 
       win.postMessage({
-        devtoolsEnabled: Vue && Vue.config.devtools,
+        devtoolsEnabled: Vue, //,Vue.config.devtools,
         vueDetected: true,
         nuxtDetected: true
       }, '*')
@@ -38,12 +38,11 @@ function detect (win) {
       }
     }
     if (el) {
-      let Vue = Object.getPrototypeOf(el.__vue__).constructor
-      while (Vue.super) {
-        Vue = Vue.super
-      }
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.__VUE_DEVTOOLS_GLOBAL_HOOK__ || {};
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = el.__vue__.constructor;
+      console.log('vue detected3');
       win.postMessage({
-        devtoolsEnabled: Vue.config.devtools,
+        devtoolsEnabled: true,
         vueDetected: true
       }, '*')
     }
